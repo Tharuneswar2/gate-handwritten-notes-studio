@@ -1,0 +1,165 @@
+@import "tailwindcss";
+@import "katex/dist/katex.min.css";
+
+/* ===== BASE STYLES ===== */
+:root {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: #0a0e1a;
+  color: #e2e8f0;
+  overflow: hidden;
+}
+
+/* ===== SCROLLBAR ===== */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 5px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 10px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #475569;
+}
+
+/* ===== HANDWRITTEN PAGE SHADOW ===== */
+.handwritten-page {
+  box-shadow:
+    0 4px 20px rgba(0, 0, 0, 0.3),
+    0 1px 4px rgba(0, 0, 0, 0.2);
+  border-radius: 2px;
+}
+
+/* ===== KATEX IN HANDWRITTEN PAGES ===== */
+.handwritten-page .katex {
+  font-size: 1.05em;
+  -webkit-text-stroke: 0px !important;
+  letter-spacing: normal !important;
+  word-spacing: normal !important;
+  line-height: 1.2 !important;
+  font-family: KaTeX_Main, 'Times New Roman', serif !important;
+}
+.handwritten-page .katex * {
+  -webkit-text-stroke: 0px !important;
+  letter-spacing: normal !important;
+  word-spacing: normal !important;
+}
+.handwritten-page .katex-display {
+  margin: 0.6em 0;
+}
+.handwritten-page .katex-error {
+  font-size: 0.8em;
+}
+
+/* ===== INLINE MATH STYLING ===== */
+.inline-math .katex {
+  display: inline;
+}
+
+/* ===== CODE BLOCKS IN HANDWRITTEN PAGES ===== */
+.handwritten-page code {
+  background: rgba(0, 0, 0, 0.06);
+  padding: 1px 4px;
+  border-radius: 3px;
+  font-family: 'Courier New', monospace;
+  font-size: 0.9em;
+}
+
+/* ===== PRINT STYLES ===== */
+@media print {
+  body {
+    background: white !important;
+    overflow: visible !important;
+  }
+
+  /* Hide everything except the print area */
+  header,
+  aside,
+  button,
+  textarea,
+  .no-print {
+    display: none !important;
+  }
+
+  .print-area {
+    overflow: visible !important;
+    padding: 0 !important;
+    display: block !important;
+  }
+
+  .print-area > div {
+    transform: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .handwritten-page {
+    box-shadow: none !important;
+    page-break-after: always;
+    break-after: page;
+    transform: none !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
+  }
+
+  @page {
+    margin: 0;
+    size: A4 portrait;
+  }
+}
+
+/* ===== TEXTAREA STYLES ===== */
+textarea::placeholder {
+  white-space: pre-wrap;
+}
+
+/* ===== RANGE INPUT STYLING ===== */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 4px;
+  background: #334155;
+  border-radius: 2px;
+  outline: none;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #6366f1;
+  cursor: pointer;
+  border: 2px solid #0f172a;
+  transition: transform 0.15s;
+}
+input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.fade-in {
+  animation: fadeIn 0.2s ease-out;
+}
+
+/* ===== HANDWRITTEN TABLE STYLE ===== */
+.handwritten-page table {
+  border-collapse: collapse;
+  width: 100%;
+}
+.handwritten-page th,
+.handwritten-page td {
+  text-align: left;
+}
