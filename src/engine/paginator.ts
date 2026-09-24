@@ -75,6 +75,13 @@ function estimateBlockHeight(block: Block, ctx: PaginationContext): number {
     }
     case 'divider':
       return 24;
+    case 'code': {
+      const codeContent = block.content || '';
+      const codeLineCount = codeContent.split('\n').length;
+      // Code uses ~0.85x font size, plus padding/border
+      const codeLineH = fontSize * 0.85 * ctx.font.lineHeight;
+      return codeLineCount * codeLineH + 28; // 28px for padding + border
+    }
     case 'pagebreak':
       return Infinity; // Forces page break
     case 'image':

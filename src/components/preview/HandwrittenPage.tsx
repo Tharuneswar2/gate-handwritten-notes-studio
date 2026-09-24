@@ -389,6 +389,44 @@ const HandwrittenPage: React.FC<HandwrittenPageProps> = ({
         );
       }
 
+      case 'code': {
+        globalLineIndex++;
+        const codeVariation = getLineVariation(handwriting, globalLineIndex);
+        return (
+          <div
+            key={block.id}
+            style={{
+              margin: '12px 0',
+              padding: '12px 16px',
+              backgroundColor: `${inkColor}06`,
+              borderLeft: `3px solid ${inkColor}25`,
+              borderRadius: '4px',
+              transform: `translateY(${parseFloat(codeVariation.marginTop) * 0.2}px)`,
+              ...paraVar,
+            }}
+          >
+            <pre
+              style={{
+                margin: 0,
+                padding: 0,
+                fontFamily: '"Courier New", "Consolas", "Liberation Mono", monospace',
+                fontSize: `${font.size * 0.82}px`,
+                lineHeight: 1.5,
+                color: inkColor,
+                whiteSpace: 'pre',
+                overflowX: 'auto',
+                overflowY: 'hidden',
+                tabSize: 4,
+                letterSpacing: '0px',
+                wordSpacing: '0px',
+              }}
+            >
+              {block.content || ''}
+            </pre>
+          </div>
+        );
+      }
+
       case 'divider':
         return (
           <hr

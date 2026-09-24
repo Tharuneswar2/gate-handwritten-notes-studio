@@ -12,7 +12,8 @@ export type BlockType =
   | 'image'
   | 'divider'
   | 'callout'
-  | 'pagebreak';
+  | 'pagebreak'
+  | 'code';
 
 export type CalloutType =
   | 'remember'
@@ -51,6 +52,8 @@ export interface Block {
   // Image
   imageUrl?: string;
   imageCaption?: string;
+  // Code
+  language?: string;
 }
 
 export interface DocumentModel {

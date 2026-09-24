@@ -73,6 +73,7 @@ export function parseRawText(raw: string): Block[] {
 
     // Code block or table wrapped in code fence (```)
     if (trimmed.startsWith('```')) {
+      const language = trimmed.slice(3).trim() || '';
       i++;
       const codeLines: string[] = [];
       while (i < lines.length && !lines[i].trim().startsWith('```')) {
@@ -92,8 +93,9 @@ export function parseRawText(raw: string): Block[] {
       }
       blocks.push({
         id: uuidv4(),
-        type: 'paragraph',
+        type: 'code',
         content: codeLines.join('\n'),
+        language: language,
       });
       continue;
     }
